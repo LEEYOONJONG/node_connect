@@ -5,6 +5,10 @@ var http = require('http'); // node 내장 모듈 불러옴
 var app = express();
 var hostname = '127.0.0.1'; // localhost
 var port = 3000;
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
 
 console.log('Server running at http://'+hostname+':'+port);
@@ -25,3 +29,8 @@ app.get('/', function (req, res) {
 var server = app.listen(3000, function () {
   console.log('앱 로드 성공입니까 11');
 });
+
+app.post('/', function(req, res){
+    console.log('post method received')
+    console.log(req.body)
+})
